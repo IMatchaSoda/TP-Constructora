@@ -28,6 +28,12 @@ namespace TP_Final
 	{
 		public static void Main(string[] args)
 		{
+			menu();
+			public static void menu(){
+			Obrero cosa_obrero = new Obrero();
+			Obra cosa_obra= new Obra();
+			constructora cosa_constructora = new constructora
+
 			bool salir= false;
 			string opcion;
 			
@@ -47,31 +53,49 @@ namespace TP_Final
 				Console.WriteLine("************************************");
 				switch(opcion){
 					case "a":
-						
+						Console.Clear():
+						cosa_obrero.nuevo_obrero();
+
 						break;
 					case "b":
+					Console.Clear():
 						
                         break;
                     case "c":
-						
+					Console.Clear():
+						cosa_obrero.Mostrar_Obrero();
 						break;
                     case "d":
+					Console.Clear():
+					cosa_constructora.Obra();
 						
 						break;
                     case "e":
+					Console.Clear():
 						
 						break;
                     case "f":
+					Console.Clear():
 						
 						break;
                     case "g":
+					Console.Clear():
 						
 						break;
                     case "h":
+					Console.Clear():
+
+					 Thread.Sleep(2000);
 						salir=true;
-						break;                       
+						break;
+					 default:
+                        Console.Clear();
+                        Console.WriteLine("La opcion ingresada es inexistente, por favor trate de nuevo." + " " + "Espere a que reaparezca el menu.");
+                        Thread.Sleep(2000);
+                        Console.Clear();
+                        break;                   
 				}
-			}
+			}}
 			
 			Console.ReadKey(true);
 		}
