@@ -1,0 +1,18 @@
+ public void eliminar_Obrero()
+        {
+            Console.WriteLine("Ingrese el nombre del usuario que quiera eliminar: ");
+            string elimi_nom = Console.ReadLine();
+            Console.WriteLine("Ingrese el dni del usuario que quiera eliminar: ");
+            int elimi_dni = int.Parse(Console.ReadLine());
+            bool elimi = false;
+            while (elimi == false)
+            {
+                foreach (ListaObreros o in Obrero)
+                {
+                    if ((o.nombreobrero == elimi_nom) && (o.dniobrero == elimi_dni))
+                    {
+                        clientes.Remove(o);
+                        elimi = true;
+                    }
+                }
+            }
