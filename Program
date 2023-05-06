@@ -28,7 +28,7 @@ namespace TP_Final
 	{
 		public static void Main(string[] args)
 		{
-			menu();
+			menu();//hola
 			public static void menu(){
 			Obrero cosa_obrero = new Obrero();
 			Obra cosa_obra= new Obra();
