@@ -15,13 +15,16 @@ namespace TP_Final
             Obras= new ArrayList();
             ListaObreros= new ArrayList();
 		}
-		public ArrayList Obras(){
+		public Constructora(){
+			
+		}
+		/*public ArrayList Obras(){
 			get{return ArrayList Obras}
 			
 		}
-       /* public void AñadirObrero(Obrero Obrero){
-            ListaObreros.add(Obrero);
-        }*/
+		*/
+        public void AñadirObrero(Obrero Obrero){
+            ListaObreros.Add(Obrero);
+        }
 	}
 }
-
