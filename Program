@@ -53,37 +53,37 @@ namespace TP_Final
 				Console.WriteLine("************************************");
 				switch(opcion){
 					case "a":
-						Console.Clear():
+						Console.Clear();
 						cosa_obrero.nuevo_obrero();
 
 						break;
 					case "b":
-					Console.Clear():
+					Console.Clear();
 						
                         break;
                     case "c":
-					Console.Clear():
+					Console.Clear();
 						cosa_obrero.Mostrar_Obrero();
 						break;
                     case "d":
-					Console.Clear():
+					Console.Clear();
 					cosa_constructora.Obra();
 						
 						break;
                     case "e":
-					Console.Clear():
+					Console.Clear();
 						
 						break;
                     case "f":
-					Console.Clear():
+					Console.Clear();
 						
 						break;
                     case "g":
-					Console.Clear():
+					Console.Clear();
 						
 						break;
                     case "h":
-					Console.Clear():
+					Console.Clear();
 
 					 Thread.Sleep(2000);
 						salir=true;
