@@ -19,9 +19,9 @@ namespace TP_Final
 			get{return ArrayList Obras}
 			
 		}
-        public void AñadirObrero(Obrero Obrero){
+       /* public void AñadirObrero(Obrero Obrero){
             ListaObreros.add(Obrero);
-        }
+        }*/
 	}
 }
 
