@@ -8,34 +8,37 @@ namespace TP_Final
 		private string nomape,cargo;
 		private int dni,legajo;
 		private int NumeroGrupo;
-        private lista_obreros;
-		public Obrero(string nomape,string cargo,int dni,int legajo,Grupo_Obreros Grupo)
+		private ArrayList lista_obreros=new ArrayList();
+		public Obrero(string nomape,string cargo,int dni,int legajo,int NumeroGrupo)
 		{
 			this.nomape=nomape;
 			this.cargo=cargo;
 			this.dni=dni;
 			this.legajo=legajo;
+			this.NumeroGrupo=NumeroGrupo;
+			
 		}
-		public string Nomape(){
-            set{nomape=value;}
-            get{return nomape;}
+		public Obrero(){
+			
+		}
+		public string Nomape{
+            set {nomape=value;}
+            get {return nomape;}
         }
-        public string Cargo(){
+        public string Cargo{
             set{cargo=value;}
             get{return cargo;}
         }
-        public int DNI(){
+        public int DNI{
             set{dni=value;}
             get{return dni;}
         }
-        public int Legajo(){
+        public int Legajo{
             set{legajo=value;}
             get{return legajo;}
         }
-        public Grupo_Obreros Grupo(){
-            set{Grupo=value;}
-            get{return Grupo;}
-        }
+        
+        
 
         public void nuevo_obrero(){
 
@@ -44,34 +47,40 @@ namespace TP_Final
                 Console.WriteLine("ingrese cargo: ");
                 cargo=Console.ReadLine();
                 Console.WriteLine("ingrese DNI ");
-                dni=Console.ReadLine();
+                dni=int.Parse(Console.ReadLine());
                 Console.WriteLine("ingrese legajo ");
-                legajo=Console.ReadLine();
+                legajo=int.Parse(Console.ReadLine());
                 Console.WriteLine("ingrese grupo ");
-                NumeroGrupo=Console.ReadLine();
+                NumeroGrupo=int.Parse(Console.ReadLine());
+                lista_obreros.Add(nomape);
             }
+		
 
-        public void agregate(){
-        lista_obreros.Add(nomape, cargo, NumeroGrupo,dni,legajo);
-        }
+       
 
-        public void eliminar_Obrero(){
-            Console.WriteLine("ingrese el dni de la persona a eliminar: ")
-            int dniEliminar=int.Parse(Console.ReadLine());
-            if(dniEliminar=dni;){
-                lista_obreros.remove()
-            }
-            else {
-                Console.WriteLine("vos solo lo conoces");
-                Console.WriteLine("Decime denuevo el dni:")
-                eliminar_Obrero();
-                //menu();
+        public void eliminar_Obrero()
+        {
+            Console.WriteLine("Ingrese el nombre del usuario que quiera eliminar: ");
+            string elimi_nom = Console.ReadLine();
+            Console.WriteLine("Ingrese el dni del usuario que quiera eliminar: ");
+            int elimi_dni = int.Parse(Console.ReadLine());
+            bool elimi = false;
+            while (elimi == false)
+            {
+                foreach (Obrero o in lista_obreros)
+                {
+                    if ((o.nomape == elimi_nom) && (o.dni == elimi_dni))
+                    {
+                        lista_obreros.Remove(o);
+                        elimi = true;
+                    }
+                }
             }
         }
 
         public void Mostrar_Obrero(){
-            Console.WriteLine("hay " + lista_obreros.count + "en la obra.")
-            Console.WriteLine(lista_obreros());
+			Console.WriteLine("hay {0} obreros en la obra.",lista_obreros.Count);
+			Console.WriteLine(lista_obreros);
         }
 
 	}
