@@ -1,25 +1,28 @@
 using System;
 
 namespace TP_Final
-{
-	public class Obra//:menu
+public class Obra//:menu
 	{
 		private string Tipodeobra;
 		private int TEEjecucion,Progreso,codigoObra;
 		private double costo;
-		protected ArrayList lista_obreros;
+		private ArrayList lista_obreros;
 		private string nombreDeDuenio;
 		private int dniDeDuenio;
 		
 		public Obra(string TObra,string nombreDeDuenio,int dni,int TEstimado,int Progreso,int Codigo,double costo)
 		{
 			Tipodeobra=TObra;
-			this.nombreDeDuenio=nombreDeDuenio
+			this.nombreDeDuenio=nombreDeDuenio;
 			dni=dniDeDuenio;
 			TEEjecucion=TEstimado;
 			this.Progreso=Progreso;
 			codigoObra=Codigo;
 			this.costo=costo;
+			ArrayList lista_obreros=new ArrayList();
+		}
+		public Obra(){
+			
 		}
 	}
 }
