@@ -29,14 +29,17 @@ namespace TP_Final
 		public static void Main(string[] args)
 		{
 			menu();//hola
+			Console.ReadKey(true);
+		}
 			public static void menu(){
 			Obrero cosa_obrero = new Obrero();
 			Obra cosa_obra= new Obra();
-			constructora cosa_constructora = new constructora
+			Constructora cosa_constructora = new Constructora();
 
-			bool salir= false;
+			bool salir=false;
 			string opcion;
-			/*ola*/ola
+			
+			
 			while (!salir){
 				
 				Console.WriteLine("************************************");
@@ -51,6 +54,7 @@ namespace TP_Final
 				Console.WriteLine("g) Listado de obras finalizadas ");
                 Console.WriteLine("h) Salir.");
 				Console.WriteLine("************************************");
+				opcion=Console.ReadLine();
 				switch(opcion){
 					case "a":
 						Console.Clear();
@@ -59,7 +63,7 @@ namespace TP_Final
 						break;
 					case "b":
 					Console.Clear();
-						
+					cosa_obrero.eliminar_Obrero();
                         break;
                     case "c":
 					Console.Clear();
@@ -67,7 +71,7 @@ namespace TP_Final
 						break;
                     case "d":
 					Console.Clear();
-					cosa_constructora.Obra();
+					//cosa_constructora.Obra();
 						
 						break;
                     case "e":
@@ -86,7 +90,7 @@ namespace TP_Final
 					Console.Clear();
 
 					 Thread.Sleep(2000);
-						salir=true;
+						
 						break;
 					 default:
                         Console.Clear();
@@ -95,9 +99,10 @@ namespace TP_Final
                         Console.Clear();
                         break;                   
 				}
-			}}
+			}
+		}
 			
-			Console.ReadKey(true);
+			
 		}
 	}
-}
+
