@@ -3,11 +3,12 @@ using System;
 namespace TP_Final
 {
 	
-	public class Obrero
+	public class Obrero:Obra
 	{
 		private string nomape,cargo;
 		private int dni,legajo;
-		private Grupo_Obreros Grupo;
+		private int NumeroGrupo;
+        private lista_obreros;
 		public Obrero(string nomape,string cargo,int dni,int legajo,Grupo_Obreros Grupo)
 		{
 			this.nomape=nomape;
@@ -35,5 +36,43 @@ namespace TP_Final
             set{Grupo=value;}
             get{return Grupo;}
         }
+
+        public void nuevo_obrero(){
+
+                Console.WriteLine("ingrese el nombre y apellido: ");
+                nomape=Console.ReadLine();
+                Console.WriteLine("ingrese cargo: ");
+                cargo=Console.ReadLine();
+                Console.WriteLine("ingrese DNI ");
+                dni=Console.ReadLine();
+                Console.WriteLine("ingrese legajo ");
+                legajo=Console.ReadLine();
+                Console.WriteLine("ingrese grupo ");
+                NumeroGrupo=Console.ReadLine();
+            }
+
+        public void agregate(){
+        lista_obreros.Add(nomape, cargo, NumeroGrupo,dni,legajo);
+        }
+
+        public void eliminar_Obrero(){
+            Console.WriteLine("ingrese el dni de la persona a eliminar: ")
+            int dniEliminar=int.Parse(Console.ReadLine());
+            if(dniEliminar=dni;){
+                lista_obreros.remove()
+            }
+            else {
+                Console.WriteLine("vos solo lo conoces");
+                Console.WriteLine("Decime denuevo el dni:")
+                eliminar_Obrero();
+                //menu();
+            }
+        }
+
+        public void Mostrar_Obrero(){
+            Console.WriteLine("hay " + lista_obreros.count + "en la obra.")
+            Console.WriteLine(lista_obreros());
+        }
+
 	}
 }
