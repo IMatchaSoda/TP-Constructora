@@ -71,13 +71,13 @@ namespace TP_Final
 						break;
                     case "d":
 					Console.Clear();
-					//cosa_constructora.Obra();
+					cosa_obra.Mostrar_Obras();
 						
 						break;
                     case "e":
 					Console.Clear();
-						
-						break;
+					cosa_obra.Nueva_Obra();
+					
                     case "f":
 					Console.Clear();
 						
@@ -89,6 +89,7 @@ namespace TP_Final
                     case "h":
 					Console.Clear();
 
+                    salir=true;
 					 Thread.Sleep(2000);
 						
 						break;
