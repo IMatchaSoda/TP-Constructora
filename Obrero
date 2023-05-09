@@ -52,16 +52,37 @@ namespace TP_Final
                 legajo=int.Parse(Console.ReadLine());
                 Console.WriteLine("ingrese grupo ");
                 NumeroGrupo=int.Parse(Console.ReadLine());
-                lista_obreros.Add(nomape);
+                Obrero newobrero = new Obrero(nomape,cargo,dni,legajo,NumeroGrupo);
+                lista_obreros.Add(newobrero);
             }
 		
 
        
 
-        public void eliminar_Obrero()
+        /*public void eliminar_Obrero()
         {
-            Console.WriteLine("Ingrese el nombre del usuario que quiera eliminar: ");
-            string elimi_nom = Console.ReadLine();
+            Console.WriteLine("Ingrese el dni del obrero a eliminar: ");
+            int elimi_dni = int.Parse(Console.ReadLine());
+            
+            
+                for (int i=0;i<lista_obreros.Count;i++)
+                {
+                	Obrero obrero = (Obrero)lista_obreros[i];
+                	if (obrero.dni == elimi_dni)
+                    {
+                        lista_obreros.RemoveAt(i);
+                        Console.WriteLine("Obrero elminitado exitosamente.");
+                        return;
+                    }
+                	else{
+                		Console.WriteLine("ese dni no existe en la base de datos,intente nuevamente.");
+                	}
+                }
+                
+            }
+            */
+           public void eliminar_Obrero()
+        {
             Console.WriteLine("Ingrese el dni del usuario que quiera eliminar: ");
             int elimi_dni = int.Parse(Console.ReadLine());
             bool elimi = false;
@@ -69,18 +90,31 @@ namespace TP_Final
             {
                 foreach (Obrero o in lista_obreros)
                 {
-                    if ((o.nomape == elimi_nom) && (o.dni == elimi_dni))
+                	if (o.dni == elimi_dni)
                     {
                         lista_obreros.Remove(o);
+                        Console.WriteLine("eliminado exitosamente.");
                         elimi = true;
+                        break;
                     }
+                	
+                    
                 }
+                if(!elimi){
+                Console.WriteLine("ese dni no existe en la base de datos,intente nuevamente.");
+                break;
+                }
+                
             }
-        }
+           }
+           
+        
 
         public void Mostrar_Obrero(){
 			Console.WriteLine("hay {0} obreros en la obra.",lista_obreros.Count);
-			Console.WriteLine(lista_obreros);
+			foreach (Obrero obrero in lista_obreros){
+				Console.WriteLine("{0}	{1}	{2} {3}",obrero.Nomape,obrero.DNI,obrero.Cargo,obrero.NumeroGrupo);
+			}
         }
 
 	}
