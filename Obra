@@ -1,28 +1,50 @@
 using System;
-
+using System.Collections;
 namespace TP_Final
-public class Obra//:menu
+{
+	public class Obra//:menu
 	{
-		private string Tipodeobra;
-		private int TEEjecucion,Progreso,codigoObra;
+		private string Tipodeobra,TEEjecucion;
+		private int Progreso,codigoObra;
 		private double costo;
-		private ArrayList lista_obreros;
 		private string nombreDeDuenio;
 		private int dniDeDuenio;
+		private int Grupo;
+		private ArrayList ListaObras=new ArrayList();
 		
-		public Obra(string TObra,string nombreDeDuenio,int dni,int TEstimado,int Progreso,int Codigo,double costo)
+		public Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra, string TEEjecucion,double costo,int Grupo)
 		{
-			Tipodeobra=TObra;
+			this.Tipodeobra=Tipodeobra;
 			this.nombreDeDuenio=nombreDeDuenio;
-			dni=dniDeDuenio;
-			TEEjecucion=TEstimado;
-			this.Progreso=Progreso;
-			codigoObra=Codigo;
+			this.dniDeDuenio=dniDeDuenio;
+			this.TEEjecucion=TEEjecucion;
 			this.costo=costo;
-			ArrayList lista_obreros=new ArrayList();
+			
 		}
 		public Obra(){
 			
 		}
+		public void Nueva_Obra(){
+			Console.WriteLine("ingrese nombre del dueño. ");
+			nombreDeDuenio= Console.ReadLine();
+			Console.WriteLine("ingrese dni del dueño");
+			dniDeDuenio=int.Parse(Console.ReadLine());
+			Console.WriteLine("ingrese tipo de obra a contruir. ");
+			Tipodeobra=Console.ReadLine();
+			Console.WriteLine("ingrese tiempo estimado de ejecucion. ");
+			TEEjecucion=Console.ReadLine();
+			Console.WriteLine("ingrese costo de la obra. ");
+			costo=double.Parse(Console.ReadLine());
+			Console.WriteLine("ingrese numero del grupo asignado a la obra.");
+			Grupo= int.Parse(Console.ReadLine());
+			Obra Obras= new Obra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,Grupo);
+			ListaObras.Add(Obras);
+		}
+		public void Mostrar_Obras(){
+			foreach(Obra obra in ListaObras){
+				Console.WriteLine("{0}	{1}	{2}	{3}	{4}	{5}",nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,Grupo);
+			}
+		}
 	}
 }
+
