@@ -8,7 +8,7 @@ namespace TP_Final
 		private string nomape,cargo;
 		private int dni,legajo;
 		private int NumeroGrupo;
-		private ArrayList lista_obreros=new ArrayList();
+		//private ArrayList lista_obreros=new ArrayList();
 		public Obrero(string nomape,string cargo,int dni,int legajo,int NumeroGrupo)
 		{
 			this.nomape=nomape;
@@ -55,32 +55,7 @@ namespace TP_Final
     }
 }*/
         
-           public void eliminar_Obrero()
-        {
-            Console.WriteLine("Ingrese el dni del usuario que quiera eliminar: ");
-            int elimi_dni = int.Parse(Console.ReadLine());
-            bool elimi = false;
-            while (elimi == false)
-            {
-                foreach (Obrero o in lista_obreros)
-                {
-                	if (o.dni == elimi_dni)
-                    {
-                        lista_obreros.Remove(o);
-                        Console.WriteLine("eliminado exitosamente.");
-                        elimi = true;
-                        break;
-                    }
-                	
-                    
-                }
-                if(!elimi){
-                Console.WriteLine("ese dni no existe en la base de datos,intente nuevamente.");
-                break;
-                }
-                
-            }
-           }
+           
            
         
 
