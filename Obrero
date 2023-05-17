@@ -37,50 +37,24 @@ namespace TP_Final
             set{legajo=value;}
             get{return legajo;}
         }
+          /*  public class Obrero
+{
+    public string Nombre { get; set; }
+    public string Apellido { get; set; }
+    public string Dni { get; set; }
+    public int NroLegajo { get; set; }
+    public string Cargo { get; set; }
+
+    public Obrero(string nombre, string apellido, string dni, int nroLegajo, string cargo)
+    {
+        Nombre = nombre;
+        Apellido = apellido;
+        Dni = dni;
+        NroLegajo = nroLegajo;
+        Cargo = cargo;
+    }
+}*/
         
-        
-
-        public void nuevo_obrero(){
-
-                Console.WriteLine("ingrese el nombre y apellido: ");
-                nomape=Console.ReadLine();
-                Console.WriteLine("ingrese cargo: ");
-                cargo=Console.ReadLine();
-                Console.WriteLine("ingrese DNI ");
-                dni=int.Parse(Console.ReadLine());
-                Console.WriteLine("ingrese legajo ");
-                legajo=int.Parse(Console.ReadLine());
-                Console.WriteLine("ingrese grupo ");
-                NumeroGrupo=int.Parse(Console.ReadLine());
-                Obrero newobrero = new Obrero(nomape,cargo,dni,legajo,NumeroGrupo);
-                lista_obreros.Add(newobrero);
-            }
-		
-
-       
-
-        /*public void eliminar_Obrero()
-        {
-            Console.WriteLine("Ingrese el dni del obrero a eliminar: ");
-            int elimi_dni = int.Parse(Console.ReadLine());
-            
-            
-                for (int i=0;i<lista_obreros.Count;i++)
-                {
-                	Obrero obrero = (Obrero)lista_obreros[i];
-                	if (obrero.dni == elimi_dni)
-                    {
-                        lista_obreros.RemoveAt(i);
-                        Console.WriteLine("Obrero elminitado exitosamente.");
-                        return;
-                    }
-                	else{
-                		Console.WriteLine("ese dni no existe en la base de datos,intente nuevamente.");
-                	}
-                }
-                
-            }
-            */
            public void eliminar_Obrero()
         {
             Console.WriteLine("Ingrese el dni del usuario que quiera eliminar: ");
