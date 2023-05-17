@@ -1,0 +1,111 @@
+using System;
+
+public class Obrero
+{
+    public string Nombre { get; set; }
+    public string Apellido { get; set; }
+    public string Dni { get; set; }
+    public int NroLegajo { get; set; }
+    public string Cargo { get; set; }
+
+    public Obrero(string nombre, string apellido, string dni, int nroLegajo, string cargo)
+    {
+        Nombre = nombre;
+        Apellido = apellido;
+        Dni = dni;
+        NroLegajo = nroLegajo;
+        Cargo = cargo;
+    }
+}
+
+public class Empresa
+{
+    public List<Obrero> Obreros { get; set; }
+
+    public Empresa()
+    {
+        Obreros = new List<Obrero>();
+    }
+
+    public void AgregarObrero(string nombre, string apellido, string dni, int nroLegajo, string cargo)
+    {
+        Obrero nuevoObrero = new Obrero(nombre, apellido, dni, nroLegajo, cargo);
+        Obreros.Add(nuevoObrero);
+        Console.WriteLine("Obrero agregado exitosamente.");
+    }
+}
+
+public class Obra
+{
+    public string NombrePropietario { get; set; }
+    public string DniPropietario { get; set; }
+    public int CodigoInterno { get; set; }
+    public string TipoObra { get; set; }
+    public int TiempoEstimado { get; set; }
+    public int EstadoAvance { get; set; }
+    public int NumeroGrupo { get; set; }
+    public double Costo { get; set; }
+
+    public Obra(string nombrePropietario, string dniPropietario, int codigoInterno, string tipoObra,
+        int tiempoEstimado, int estadoAvance, int numeroGrupo, double costo)
+    {
+        NombrePropietario = nombrePropietario;
+        DniPropietario = dniPropietario;
+        CodigoInterno = codigoInterno;
+        TipoObra = tipoObra;
+        TiempoEstimado = tiempoEstimado;
+        EstadoAvance = estadoAvance;
+        NumeroGrupo = numeroGrupo;
+        Costo = costo;
+    }
+}
+
+public class Empresa
+{
+    public List<Obra> Obras { get; set; }
+
+    public Empresa()
+    {
+        Obras = new List<Obra>();
+    }
+
+    public void AgregarObra(string nombrePropietario, string dniPropietario, int codigoInterno, string tipoObra,
+        int tiempoEstimado, int estadoAvance, int numeroGrupo, double costo)
+    {
+        Obra nuevaObra = new Obra(nombrePropietario, dniPropietario, codigoInterno, tipoObra,
+            tiempoEstimado, estadoAvance, numeroGrupo, costo);
+        Obras.Add(nuevaObra);
+        Console.WriteLine("Obra agregada exitosamente.");
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Empresa empresa = new Empresa();
+
+        Console.WriteLine("Agregar una nueva obra:");
+        Console.Write("Nombre del propietario: ");
+        string nombrePropietario = Console.ReadLine();
+        Console.Write("DNI del propietario: ");
+        string dniPropietario = Console.ReadLine();
+        Console.Write("Código interno: ");
+        int codigoInterno = int.Parse(Console.ReadLine());
+        Console.Write("Tipo de obra: ");
+        string tipoObra = Console.ReadLine();
+        Console.Write("Tiempo estimado (en días): ");
+        int tiempoEstimado = int.Parse(Console.ReadLine());
+        Console.Write("Estado de avance (%): ");
+        int estadoAvance = int.Parse(Console.ReadLine());
+        Console.Write("Número de grupo: ");
+        int numeroGrupo = int.Parse(Console.ReadLine());
+        Console.Write("Costo: ");
+        double costo = double.Parse(Console.ReadLine());
+
+        empresa.AgregarObra(nombrePropietario, dniPropietario, codigoInterno, tipoObra,
+            tiempoEstimado, estadoAvance, numeroGrupo, costo);
+
+        // Resto de la lógica de la aplicación
+    }
+}
