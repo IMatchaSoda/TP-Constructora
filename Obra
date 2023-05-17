@@ -24,22 +24,7 @@ namespace TP_Final
 		public Obra(){
 			
 		}
-		public void Nueva_Obra(){
-			Console.WriteLine("ingrese nombre del dueño. ");
-			nombreDeDuenio= Console.ReadLine();
-			Console.WriteLine("ingrese dni del dueño");
-			dniDeDuenio=int.Parse(Console.ReadLine());
-			Console.WriteLine("ingrese tipo de obra a contruir. ");
-			Tipodeobra=Console.ReadLine();
-			Console.WriteLine("ingrese tiempo estimado de ejecucion. ");
-			TEEjecucion=Console.ReadLine();
-			Console.WriteLine("ingrese costo de la obra. ");
-			costo=double.Parse(Console.ReadLine());
-			Console.WriteLine("ingrese numero del grupo asignado a la obra.");
-			Grupo= int.Parse(Console.ReadLine());
-			Obra Obras= new Obra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,Grupo);
-			ListaObras.Add(Obras);
-		}
+		
 		public void Mostrar_Obras(){
 			foreach(Obra obra in ListaObras){
 				Console.WriteLine("{0}	{1}	{2}	{3}	{4}	{5}",nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,Grupo);
