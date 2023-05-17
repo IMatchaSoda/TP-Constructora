@@ -58,7 +58,19 @@ namespace TP_Final
 				switch(opcion){
 					case "a":
 						Console.Clear();
-						cosa_obrero.nuevo_obrero();
+						Console.WriteLine("Agregar un nuevo obrero:");
+        				Console.Write("Nombre: ");
+        				string nombre = Console.ReadLine();
+        				Console.Write("Apellido: ");
+        				string apellido = Console.ReadLine();
+        				Console.Write("DNI: ");
+        				string dni = Console.ReadLine();
+       					Console.Write("Número de legajo: ");
+        				int nroLegajo = int.Parse(Console.ReadLine());
+        				Console.Write("Cargo: ");
+        				string cargo = Console.ReadLine();
+
+        				cosa_constructora.AgregarObrero(nombre, apellido, dni, nroLegajo, cargo);
 
 						break;
 					case "b":
@@ -76,7 +88,20 @@ namespace TP_Final
 						break;
                     case "e":
 					Console.Clear();
-					cosa_obra.Nueva_Obra();
+					Console.WriteLine("ingrese nombre del dueño. ");
+					nombreDeDuenio= Console.ReadLine();
+					Console.WriteLine("ingrese dni del dueño");
+					dniDeDuenio=int.Parse(Console.ReadLine());
+					Console.WriteLine("ingrese tipo de obra a contruir. ");
+					Tipodeobra=Console.ReadLine();
+					Console.WriteLine("ingrese tiempo estimado de ejecucion. ");
+					TEEjecucion=Console.ReadLine();
+					Console.WriteLine("ingrese costo de la obra. ");
+					costo=double.Parse(Console.ReadLine());
+					Console.WriteLine("ingrese numero del grupo asignado a la obra.");
+					Grupo= int.Parse(Console.ReadLine());
+					cosa_constructora.AgregarObra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,Grupo);
+					
 					
                     case "f":
 					Console.Clear();
