@@ -75,7 +75,30 @@ namespace TP_Final
 						break;
 					case "b":
 					Console.Clear();
-					cosa_obrero.eliminar_Obrero();
+				
+           				Console.WriteLine("Ingrese el dni del usuario que quiera eliminar: ");
+            			int elimi_dni = int.Parse(Console.ReadLine());
+            			bool elimi = false;
+            			while (elimi == false)
+            			{
+                			foreach (Obrero o in obrero)
+                			{	
+                				if (o.dni == elimi_dni)
+                    			{
+                    			    obrero.Remove(o);
+                    			    Console.WriteLine("eliminado exitosamente.");
+                    			    elimi = true;
+                    			    break;
+                    			}
+                	
+                    
+                			}
+                			if(!elimi){
+                			Console.WriteLine("ese dni no existe en la base de datos,intente nuevamente.");
+                			break;
+                			}
+                
+						}
                         break;
                     case "c":
 					Console.Clear();
