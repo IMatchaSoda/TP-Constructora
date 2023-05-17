@@ -102,7 +102,7 @@ namespace TP_Final
                         break;
                     case "c":
 					Console.Clear();
-						cosa_obrero.Mostrar_Obrero();
+					cosa_obrero.Mostrar_Obrero();
 						break;
                     case "d":
 					Console.Clear();
