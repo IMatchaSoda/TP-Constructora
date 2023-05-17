@@ -8,23 +8,22 @@ namespace TP_Final
 		private string nombre;
 		private ArrayList Obras;
         private ArrayList ObrasFinalizadas;
-        private ArrayList ListaObreros;
-		public Constructora(string name)
-		{
-			nombre=name;
-            Obras= new ArrayList();
-            ListaObreros= new ArrayList();
-		}
+        public List<Obrero> Obreros { get; set; }
+		
 		public Constructora(){
-			
+			Obreros = new List<Obrero>();
+			Obra=new List<Obra>();
 		}
-		/*public ArrayList Obras(){
-			get{return ArrayList Obras}
-			
+		public void AgregarObra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra,string TEEjecucion,double costo,int Grupo){
+			Obra NuevaObra= new Obra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,Grupo);
+			Obra.Add(NuevaObra);
+			Console.WriteLine("agregado exitosamente, perfectirigillo");
 		}
-		*/
-        public void AñadirObrero(Obrero Obrero){
-            ListaObreros.Add(Obrero);
-        }
+        public void AgregarObrero(string nombre, string apellido, string dni, int nroLegajo, string cargo)
+    {
+        Obrero nuevoObrero = new Obrero(nombre, apellido, dni, nroLegajo, cargo);
+        Obreros.Add(nuevoObrero);
+        Console.WriteLine("Obrero agregado exitosamente.");
+    }
 	}
 }
