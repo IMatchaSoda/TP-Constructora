@@ -21,7 +21,11 @@ finalizadas
 g) Listado de obras finalizadas
  */
 using System;
-
+using System.Collections;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 namespace TP_Final
 {
 	class Program
@@ -34,7 +38,18 @@ namespace TP_Final
 			public static void menu(){
 			Obrero cosa_obrero = new Obrero();
 			Obra cosa_obra= new Obra();
-			Constructora cosa_constructora = new Constructora();
+			Obra obra1= new Obra("Jorge",11111111,"Hotel","6 meses",50000);
+			
+			Grupo_Obreros cosa_grupo = new Grupo_Obreros(1);
+			Grupo_Obreros grupo1= new Grupo_Obreros(1);
+			Obrero o1= new Obrero("jorge","jose","capataz", 1231231234,251231234);
+			cosa_grupo.AgregarObrero(o1);
+			Constructora cosa_constructora = new Constructora("galpone",cosa_grupo);
+			Obra obra2= new Obra("Jorge",11111111,"Hotel","6 meses",50000,cosa_grupo);
+			
+			o1.Grupo=grupo1;
+			cosa_obra.Numgrupo=grupo1;
+			
 
 			bool salir=false;
 			string opcion;
@@ -64,68 +79,57 @@ namespace TP_Final
         				Console.Write("Apellido: ");
         				string apellido = Console.ReadLine();
         				Console.Write("DNI: ");
-        				string dni = Console.ReadLine();
+        				int dni = int.Parse(Console.ReadLine());
        					Console.Write("Número de legajo: ");
         				int nroLegajo = int.Parse(Console.ReadLine());
         				Console.Write("Cargo: ");
         				string cargo = Console.ReadLine();
-
-        				cosa_constructora.AgregarObrero(nombre, apellido, dni, nroLegajo, cargo);
+        				
+        				cosa_constructora.AgregarObrero(nombre, apellido, cargo, dni, nroLegajo);
+        				Console.WriteLine("Obrero agregado exitosamente.");
 
 						break;
 					case "b":
 					Console.Clear();
-				
-           				Console.WriteLine("Ingrese el dni del usuario que quiera eliminar: ");
-            			int elimi_dni = int.Parse(Console.ReadLine());
-            			bool elimi = false;
-            			while (elimi == false)
-            			{
-                			foreach (Obrero o in obrero)
-                			{	
-                				if (o.dni == elimi_dni)
-                    			{
-                    			    obrero.Remove(o);
-                    			    Console.WriteLine("eliminado exitosamente.");
-                    			    elimi = true;
-                    			    break;
-                    			}
-                	
-                    
-                			}
-                			if(!elimi){
-                			Console.WriteLine("ese dni no existe en la base de datos,intente nuevamente.");
-                			break;
-                			}
+					 if(cosa_grupo.Lista_obreros.Count>0){
+						cosa_grupo.Mostrar_Obrero();
+						Console.WriteLine("Ingrese el dni del usuario que quiera eliminar: ");
+						dni=int.Parse(Console.ReadLine());
+            			Console.Clear();
+						//cosa_grupo.eliminar_Obrero(dni);
+					 }
+					 else
+					 {
+						//FaltaobreroException
+					 }
                 
-						}
+						
                         break;
+					 
                     case "c":
 					Console.Clear();
-					cosa_obrero.Mostrar_Obrero();
+					cosa_grupo.Mostrar_Obrero();
 						break;
                     case "d":
 					Console.Clear();
-					cosa_obra.Mostrar_Obras();
+					cosa_constructora.Mostrar_Obras();
 						
 						break;
                     case "e":
 					Console.Clear();
 					Console.WriteLine("ingrese nombre del dueño. ");
-					nombreDeDuenio= Console.ReadLine();
+					string nombreDeDuenio= Console.ReadLine();
 					Console.WriteLine("ingrese dni del dueño");
-					dniDeDuenio=int.Parse(Console.ReadLine());
+					int dniDeDuenio=int.Parse(Console.ReadLine());
 					Console.WriteLine("ingrese tipo de obra a contruir. ");
-					Tipodeobra=Console.ReadLine();
+					string Tipodeobra=Console.ReadLine();
 					Console.WriteLine("ingrese tiempo estimado de ejecucion. ");
-					TEEjecucion=Console.ReadLine();
+					string TEEjecucion=(Console.ReadLine());
 					Console.WriteLine("ingrese costo de la obra. ");
-					costo=double.Parse(Console.ReadLine());
-					Console.WriteLine("ingrese numero del grupo asignado a la obra.");
-					Grupo= int.Parse(Console.ReadLine());
-					cosa_constructora.AgregarObra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,Grupo);
+					double costo=double.Parse(Console.ReadLine());
+					cosa_constructora.AgregarObra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo);
 					
-					
+					break;
                     case "f":
 					Console.Clear();
 						
