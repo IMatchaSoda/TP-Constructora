@@ -2,34 +2,64 @@ using System;
 using System.Collections;
 namespace TP_Final
 {
-	public class Obra//:menu
+	public class Obra
 	{
-		private string Tipodeobra,TEEjecucion;
+		private string tipodeobra,TEstimado;
 		private int Progreso,codigoObra;
 		private double costo;
 		private string nombreDeDuenio;
 		private int dniDeDuenio;
-		private int Grupo;
+		private Grupo_Obreros numgrupo;
 		private ArrayList ListaObras=new ArrayList();
 		
-		public Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra, string TEEjecucion,double costo,int Grupo)
+		public Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra, string TEstimado,double costo,Grupo_Obreros numgrupo)
 		{
-			this.Tipodeobra=Tipodeobra;
+			this.tipodeobra=Tipodeobra;
 			this.nombreDeDuenio=nombreDeDuenio;
 			this.dniDeDuenio=dniDeDuenio;
-			this.TEEjecucion=TEEjecucion;
+			this.TEstimado=TEstimado;
+			this.costo=costo;
+			this.numgrupo=numgrupo;
+			
+		}
+		public Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra, string TEstimado,double costo)
+		{
+			this.tipodeobra=Tipodeobra;
+			this.nombreDeDuenio=nombreDeDuenio;
+			this.dniDeDuenio=dniDeDuenio;
+			this.TEstimado=TEstimado;
 			this.costo=costo;
 			
 		}
 		public Obra(){
 			
 		}
-		
-		public void Mostrar_Obras(){
-			foreach(Obra obra in ListaObras){
-				Console.WriteLine("{0}	{1}	{2}	{3}	{4}	{5}",nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,Grupo);
-			}
+		public string NombreDuenio{
+			set{nombreDeDuenio=value;}get{return nombreDeDuenio;}
 		}
+		public int DniDuenio{
+			set{dniDeDuenio=value;}get{return dniDeDuenio;}
+		}
+		public string Tipo_obra{
+			set{tipodeobra=value;}
+			get{return tipodeobra;}
+		}
+		public string Testimado{
+			set{TEstimado= value;} get{return TEstimado;}
+		}
+		public int CodigoObra{
+			set{codigoObra=value;} get{return codigoObra;}
+		}
+		public Grupo_Obreros Numgrupo{
+			set{numgrupo= value;} get{return numgrupo;}
+		}
+		
+		
+			public override string ToString()
+		{
+			return string.Format("{0}	{1}	{2}	{3}	{4}	{5}",nombreDeDuenio,dniDeDuenio,tipodeobra,TEstimado,costo,	numgrupo);
+		}
+		
 	}
 }
 
