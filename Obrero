@@ -1,29 +1,46 @@
 using System;
-
+using System.Collections;
+using System.Collections.Generic;
 namespace TP_Final
 {
 	
-	public class Obrero:Obra
+	public class Obrero
 	{
-		private string nomape,cargo;
+		private string nombre,apellido,cargo;
 		private int dni,legajo;
-		private int NumeroGrupo;
-		//private ArrayList lista_obreros=new ArrayList();
-		public Obrero(string nomape,string cargo,int dni,int legajo,int NumeroGrupo)
+		private Grupo_Obreros grupo;
+		public Obrero(string nombre,string apellido,string cargo,int dni,int legajo)
 		{
-			this.nomape=nomape;
+			this.nombre=nombre;
+            this.apellido=apellido;
 			this.cargo=cargo;
 			this.dni=dni;
 			this.legajo=legajo;
-			this.NumeroGrupo=NumeroGrupo;
+			
+		}
+		public Obrero(string nombre,string apellido,string cargo,int dni,int legajo,Grupo_Obreros grupo)
+		{
+			this.nombre=nombre;
+            this.apellido=apellido;
+			this.cargo=cargo;
+			this.dni=dni;
+			this.legajo=legajo;
+			this.grupo=grupo;
 			
 		}
 		public Obrero(){
 			
 		}
-		public string Nomape{
-            set {nomape=value;}
-            get {return nomape;}
+		public Grupo_Obreros Grupo{
+			set{grupo=value;}get{return grupo;}
+		}
+		public string Nombre{
+            set {nombre=value;}
+            get {return nombre;}
+        }
+        public string Apellido{
+            set{apellido=value;}
+            get{return apellido;}
         }
         public string Cargo{
             set{cargo=value;}
@@ -37,34 +54,10 @@ namespace TP_Final
             set{legajo=value;}
             get{return legajo;}
         }
-          /*  public class Obrero
-{
-    public string Nombre { get; set; }
-    public string Apellido { get; set; }
-    public string Dni { get; set; }
-    public int NroLegajo { get; set; }
-    public string Cargo { get; set; }
-
-    public Obrero(string nombre, string apellido, string dni, int nroLegajo, string cargo)
-    {
-        Nombre = nombre;
-        Apellido = apellido;
-        Dni = dni;
-        NroLegajo = nroLegajo;
-        Cargo = cargo;
-    }
-}*/
-        
-           
-           
-        
-
-        public void Mostrar_Obrero(){
-			Console.WriteLine("hay {0} obreros en la obra.",lista_obreros.Count);
-			foreach (Obrero obrero in lista_obreros){
-				Console.WriteLine("{0}	{1}	{2} {3}",obrero.Nomape,obrero.DNI,obrero.Cargo,obrero.NumeroGrupo);
-			}
-        }
+		public override string ToString()
+		{
+			return string.Format("{0}	{1}	{2}	{3}	{4}	{5}",nombre, apellido, dni,legajo,cargo,grupo.Numero);
+		}
 
 	}
 }
