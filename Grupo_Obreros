@@ -1,0 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+namespace TP_Final
+{
+	
+	public class Grupo_Obreros
+	{
+		
+		private Obra codigoObra;
+		private Obrero obrero;
+		private List<Obrero> lista_obreros;
+		private int NumGrupo;
+		public Grupo_Obreros(Obra Codigo,int Numero)
+		{
+			Numero= NumGrupo;
+			Codigo= codigoObra;
+			 lista_obreros= new List<Obrero>();
+		}
+		public Grupo_Obreros(){
+			 lista_obreros= new List<Obrero>();
+		}
+		public Grupo_Obreros(Obrero obrero){
+			this.obrero=obrero;
+		}
+		
+		public Grupo_Obreros(int NumGrupo){
+			this.NumGrupo=NumGrupo;
+			 lista_obreros= new List<Obrero>();
+		}
+		
+		
+		public void AgregarObrero(string nombre, string apellido,string cargo, int dni, int nroLegajo,Grupo_Obreros grupo)
+    {
+        Obrero nuevoObrero = new Obrero(nombre, apellido,cargo, dni, nroLegajo, grupo);
+        lista_obreros.Add(nuevoObrero);
+        
+    }
+    
+        public Obra Codigo{
+            set{codigoObra= value;}
+            get{return codigoObra;}
+        }
+		public List<Obrero> Lista_obreros{
+			get{return lista_obreros;}
+		}
+		public Obrero Obrero{
+        	set{obrero=value;}get{return obrero;}
+        }
+		public int Numero{
+			set{NumGrupo= value;}get{return NumGrupo;}
+		}
+		public void Mostrar_Obrero(){
+			Console.WriteLine("hay {0} obreros en la obra.",lista_obreros.Count);
+			foreach (Obrero o in lista_obreros){
+				Console.WriteLine(o.ToString());
+			}
+   }
+			
+			public void AgregarObrero(Obrero obrero){
+    
+        
+            lista_obreros.Add(obrero);
+        
+    	
+			
+		}
+
+	}
+}
