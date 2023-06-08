@@ -1,3 +1,11 @@
+/*
+ * Creado por SharpDevelop.
+ * Usuario: iori_
+ * Fecha: 2/5/2023
+ * Hora: 19:59
+ * 
+ * Para cambiar esta plantilla use Herramientas | Opciones | Codificación | Editar Encabezados Estándar
+ */
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +17,7 @@ namespace TP_Final
 		//Atributos
         private string nombre;
         private Obra obra;
+        private Obra progreso;
         private Grupo_Obreros grupo;
 		private List<Obra> obras;
         private List<Obra> obrasFinalizadas;
@@ -27,6 +36,10 @@ namespace TP_Final
 		public Constructora(){
 			
 		}
+		public Constructora(Obra obra){
+			this.obra=obra;
+			
+		}
 		public Constructora(Grupo_Obreros grupos){
 			this.grupos=grupos;
 		}
@@ -38,22 +51,29 @@ namespace TP_Final
         public List<Grupo_Obreros> Lista_grupos{
             get{return  lista_grupos;}
         }
-        public Obra Obras{
-            get{return Obras;}
+        public List<Obra> Obras{
+            get{return obras;}
         }
-        public Obra ObrasFinalizadas{
-            get{return ObrasFinalizadas;}
+        public List<Obra> ObrasFinalizadas{
+            get{return obrasFinalizadas;}
         }
         public Grupo_Obreros Grupo{
         	set{grupos=value;}get{return grupos;}
         }
+        public Obra Progress{
+        	set{progreso=value;}get{return progreso;}
+        }
         
-		public void AgregarObra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra,string TEEjecucion,double costo){
-			Obra NuevaObra= new Obra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo);
+		public void Agregar_Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra,string TEEjecucion,double costo,int progreso){
+			Obra NuevaObra= new Obra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,progreso);
 			obras.Add(NuevaObra);
 			Console.WriteLine("agregado exitosamente, perfectirigillo");
 		}
-        public void AgregarObrero(string nombre, string apellido,string cargo, int dni, int nroLegajo)
+        public void Agregar_Obra(Obra obra){
+        	obras.Add(obra);
+        	
+        }
+        public void Agregar_Obrero(string nombre, string apellido,string cargo, int dni, int nroLegajo)
     {
         if (grupo != null)
     {
@@ -70,10 +90,36 @@ namespace TP_Final
         
  
         public void Mostrar_Obras(){
-			foreach(Obra obra in obras){
-				Console.WriteLine(obra);
+        	
+				foreach(Obra obra in obras){
+        		Console.WriteLine(obra.ToString());
+			}
+        	
+  
+        }
+        public void Mostrar_ObrasF(){
+			foreach(Obra obraF in obrasFinalizadas){
+				Console.WriteLine(obraF);
 			}
         }
+        public void estado_obra(){
+        	
+        	for (int i = 0; i < obras.Count; i++){
+
+    Obra obra = obras[i];
+
+    if (obra.Progreso == 100){
+    
+        obrasFinalizadas.Add(obra);
+        obras.RemoveAt(i);
+        i--; 
+             }
+        } 	
+      }
+        public void Agregar_Grupo(Grupo_Obreros grupo){
+        	lista_grupos.Add(grupo);
+        }
+        
     
 	
 	   /* public void eliminar_Obrero(int dni)
