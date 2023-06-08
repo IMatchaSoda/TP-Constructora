@@ -5,14 +5,14 @@ namespace TP_Final
 	public class Obra
 	{
 		private string tipodeobra,TEstimado;
-		private int Progreso,codigoObra;
+		private int progreso,codigoObra;
 		private double costo;
 		private string nombreDeDuenio;
 		private int dniDeDuenio;
 		private Grupo_Obreros numgrupo;
-		private ArrayList ListaObras=new ArrayList();
 		
-		public Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra, string TEstimado,double costo,Grupo_Obreros numgrupo)
+		
+		public Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra, string TEstimado,double costo,Grupo_Obreros numgrupo,int progreso)
 		{
 			this.tipodeobra=Tipodeobra;
 			this.nombreDeDuenio=nombreDeDuenio;
@@ -20,15 +20,16 @@ namespace TP_Final
 			this.TEstimado=TEstimado;
 			this.costo=costo;
 			this.numgrupo=numgrupo;
-			
+			this.progreso=progreso;
 		}
-		public Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra, string TEstimado,double costo)
+		public Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra, string TEstimado,double costo,int progreso)
 		{
 			this.tipodeobra=Tipodeobra;
 			this.nombreDeDuenio=nombreDeDuenio;
 			this.dniDeDuenio=dniDeDuenio;
 			this.TEstimado=TEstimado;
 			this.costo=costo;
+			this.progreso=progreso;
 			
 		}
 		public Obra(){
@@ -53,11 +54,15 @@ namespace TP_Final
 		public Grupo_Obreros Numgrupo{
 			set{numgrupo= value;} get{return numgrupo;}
 		}
+		public int Progreso{
+			set{progreso=value;} get{return progreso;}
+		}
 		
 		
 			public override string ToString()
 		{
-			return string.Format("{0}	{1}	{2}	{3}	{4}	{5}",nombreDeDuenio,dniDeDuenio,tipodeobra,TEstimado,costo,	numgrupo);
+				
+			return string.Format("Propietario:{0} -- Dni:{1} -- Tipo:{2} -- TiempoEstimado:{3} -- Costo:{4}usd -- Progreso:{5} -- N°Grupo:{6}",nombreDeDuenio,dniDeDuenio,tipodeobra,TEstimado,costo,progreso,numgrupo.Numero);
 		}
 		
 	}
