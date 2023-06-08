@@ -38,17 +38,48 @@ namespace TP_Final
 			public static void menu(){
 			Obrero cosa_obrero = new Obrero();
 			Obra cosa_obra= new Obra();
-			Obra obra1= new Obra("Jorge",11111111,"Hotel","6 meses",50000);
+			Obra obra1= new Obra("Jorge",40123124,"Hotel","1 año",50000,90);
+			Obra obra2= new Obra("Carlos",30556543,"Hotel","2 años",1000000,60);
+			Obra obra3= new Obra("Alberto",35125435,"Hotel","6 meses",100000,100);
 			
-			Grupo_Obreros cosa_grupo = new Grupo_Obreros(1);
-			Grupo_Obreros grupo1= new Grupo_Obreros(1);
+			Grupo_Obreros cosa_grupo1 = new Grupo_Obreros(1);
+			Grupo_Obreros cosa_grupo2 = new Grupo_Obreros(2);
+			Grupo_Obreros cosa_grupo3 = new Grupo_Obreros(3);
+			Grupo_Obreros cosa_grupo4 = new Grupo_Obreros(4);
+			Grupo_Obreros cosa_grupo5 = new Grupo_Obreros(5);
+			Grupo_Obreros cosa_grupo6 = new Grupo_Obreros(6);
+			Grupo_Obreros cosa_grupo7 = new Grupo_Obreros(7);
+			Grupo_Obreros cosa_grupo8 = new Grupo_Obreros(8);
+			
 			Obrero o1= new Obrero("jorge","jose","capataz", 1231231234,251231234);
-			cosa_grupo.AgregarObrero(o1);
-			Constructora cosa_constructora = new Constructora("galpone",cosa_grupo);
-			Obra obra2= new Obra("Jorge",11111111,"Hotel","6 meses",50000,cosa_grupo);
+			Obrero o2= new Obrero("juan","carlo","peon", 1231231234,251231234);
+			Obrero o3= new Obrero("homero","simpson","arquitecto", 1231231234,251231234);
 			
-			o1.Grupo=grupo1;
-			cosa_obra.Numgrupo=grupo1;
+			cosa_grupo1.AgregarObrero(o1);
+			cosa_grupo2.AgregarObrero(o2);
+			cosa_grupo3.AgregarObrero(o3);
+			
+			Constructora cosa_constructora = new Constructora("galpone",cosa_grupo1);
+			cosa_constructora.Agregar_Grupo(cosa_grupo2);
+			cosa_constructora.Agregar_Grupo(cosa_grupo3);
+			cosa_constructora.Agregar_Grupo(cosa_grupo4);
+			cosa_constructora.Agregar_Grupo(cosa_grupo5);
+			cosa_constructora.Agregar_Grupo(cosa_grupo6);
+			cosa_constructora.Agregar_Grupo(cosa_grupo7);
+			cosa_constructora.Agregar_Grupo(cosa_grupo8);
+			Obra obra4= new Obra("Jorge",11111111,"Hotel","6 meses",50000,cosa_grupo4,50);
+			Obra obra5= new Obra("Miguel Mashers",11111111,"Hotel","11 meses",50000,cosa_grupo5,99);
+			o1.Grupo=cosa_grupo1;
+			o2.Grupo=cosa_grupo2;
+			o3.Grupo=cosa_grupo3;
+			cosa_obra.Numgrupo=cosa_grupo1;
+			obra1.Numgrupo=cosa_grupo2;
+			obra2.Numgrupo=cosa_grupo3;
+			obra3.Numgrupo=cosa_grupo4;
+			
+			cosa_constructora.Agregar_Obra(obra1);
+			cosa_constructora.Agregar_Obra(obra2);
+			cosa_constructora.Agregar_Obra(obra3);
 			
 
 			bool salir=false;
@@ -85,14 +116,14 @@ namespace TP_Final
         				Console.Write("Cargo: ");
         				string cargo = Console.ReadLine();
         				
-        				cosa_constructora.AgregarObrero(nombre, apellido, cargo, dni, nroLegajo);
+        				cosa_constructora.Agregar_Obrero(nombre, apellido, cargo, dni, nroLegajo);
         				Console.WriteLine("Obrero agregado exitosamente.");
 
 						break;
 					case "b":
 					Console.Clear();
-					 if(cosa_grupo.Lista_obreros.Count>0){
-						cosa_grupo.Mostrar_Obrero();
+					 if(cosa_grupo1.Lista_obreros.Count>0){
+						cosa_grupo1.Mostrar_Obrero();
 						Console.WriteLine("Ingrese el dni del usuario que quiera eliminar: ");
 						dni=int.Parse(Console.ReadLine());
             			Console.Clear();
@@ -108,7 +139,14 @@ namespace TP_Final
 					 
                     case "c":
 					Console.Clear();
-					cosa_grupo.Mostrar_Obrero();
+					cosa_grupo1.Mostrar_Obrero();
+					cosa_grupo2.Mostrar_Obrero();
+					cosa_grupo3.Mostrar_Obrero();
+					cosa_grupo4.Mostrar_Obrero();
+					cosa_grupo5.Mostrar_Obrero();
+					cosa_grupo6.Mostrar_Obrero();
+					cosa_grupo7.Mostrar_Obrero();
+					cosa_grupo8.Mostrar_Obrero();
 						break;
                     case "d":
 					Console.Clear();
@@ -127,11 +165,22 @@ namespace TP_Final
 					string TEEjecucion=(Console.ReadLine());
 					Console.WriteLine("ingrese costo de la obra. ");
 					double costo=double.Parse(Console.ReadLine());
-					cosa_constructora.AgregarObra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo);
+					cosa_constructora.Agregar_Obra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,0);
 					
 					break;
                     case "f":
 					Console.Clear();
+					cosa_constructora.Mostrar_Obras();
+					int x;
+					int i;
+					for(i=0;i<cosa_constructora.Obras.Count;i++){
+					Console.WriteLine("ingrese la obra cuyo progreso desea modificar.");
+					x=int.Parse(Console.ReadLine());
+					Console.WriteLine("ingrese el valor de progreso que desea modificar.");
+					}
+					
+					
+					
 						
 						break;
                     case "g":
