@@ -51,10 +51,18 @@ namespace TP_Final
 			set{NumGrupo= value;}get{return NumGrupo;}
 		}
 		public void Mostrar_Obrero(){
-			Console.WriteLine("hay {0} obreros en la obra.",lista_obreros.Count);
+			if(lista_obreros.Count>=1){
+				Console.WriteLine("************************************");
+				Console.WriteLine("hay {0} obreros en el grupo.",lista_obreros.Count);
+				Console.WriteLine("************************************");
 			foreach (Obrero o in lista_obreros){
 				Console.WriteLine(o.ToString());
 			}
+		}
+			else{
+				Console.WriteLine("");
+			}
+				
    }
 			
 			public void AgregarObrero(Obrero obrero){
