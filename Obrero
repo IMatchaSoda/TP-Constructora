@@ -56,7 +56,7 @@ namespace TP_Final
         }
 		public override string ToString()
 		{
-			return string.Format("{0}	{1}	{2}	{3}	{4}	{5}",nombre, apellido, dni,legajo,cargo,grupo.Numero);
+			return string.Format("nombre y apellido:{0},{1} dni:{2}	-- legajo: {3} -- cargo: {4} -- N°Grupo: {5}",nombre, apellido, dni,legajo,cargo,grupo.Numero);
 		}
 
 	}
