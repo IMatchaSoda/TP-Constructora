@@ -38,9 +38,9 @@ namespace TP_Final
 			public static void menu(){
 			Obrero cosa_obrero = new Obrero();
 			Obra cosa_obra= new Obra();
-			Obra obra1= new Obra("Jorge",40123124,"Hotel","1 año",50000,90);
-			Obra obra2= new Obra("Carlos",30556543,"Hotel","2 años",1000000,60);
-			Obra obra3= new Obra("Alberto",35125435,"Hotel","6 meses",100000,100);
+			Obra obra1= new Obra("Jorge",40123124,"Hotel","1 año",50000,4,90,4);
+			Obra obra2= new Obra("Carlos",30556543,"Hotel","2 años",1000000,5,60,5);
+			Obra obra3= new Obra("Alberto",35125435,"Hotel","6 meses",100000,6,100,3);
 			
 			Grupo_Obreros cosa_grupo1 = new Grupo_Obreros(1);
 			Grupo_Obreros cosa_grupo2 = new Grupo_Obreros(2);
@@ -51,9 +51,9 @@ namespace TP_Final
 			Grupo_Obreros cosa_grupo7 = new Grupo_Obreros(7);
 			Grupo_Obreros cosa_grupo8 = new Grupo_Obreros(8);
 			
-			Obrero o1= new Obrero("jorge","jose","capataz", 1231231234,251231234);
-			Obrero o2= new Obrero("juan","carlo","peon", 1231231234,251231234);
-			Obrero o3= new Obrero("homero","simpson","arquitecto", 1231231234,251231234);
+			Obrero o1= new Obrero("jorge","jose","capataz", 1231231234,251231234,1);
+			Obrero o2= new Obrero("juan","carlo","peon", 1231231234,251231234,1);
+			Obrero o3= new Obrero("homero","simpson","arquitecto", 1231231234,251231234,2);
 			
 			cosa_grupo1.AgregarObrero(o1);
 			cosa_grupo2.AgregarObrero(o2);
@@ -67,15 +67,11 @@ namespace TP_Final
 			cosa_constructora.Agregar_Grupo(cosa_grupo6);
 			cosa_constructora.Agregar_Grupo(cosa_grupo7);
 			cosa_constructora.Agregar_Grupo(cosa_grupo8);
-			Obra obra4= new Obra("Jorge",11111111,"Hotel","6 meses",50000,cosa_grupo4,50);
-			Obra obra5= new Obra("Miguel Mashers",11111111,"Hotel","11 meses",50000,cosa_grupo5,99);
+			Obra obra4= new Obra("Jorge",11111111,"Hotel","6 meses",50000,1,50,0);
+			Obra obra5= new Obra("Miguel Mashers",11111111,"Hotel","11 meses",50000,2,99,1);
 			o1.Grupo=cosa_grupo1;
 			o2.Grupo=cosa_grupo2;
 			o3.Grupo=cosa_grupo3;
-			cosa_obra.Numgrupo=cosa_grupo1;
-			obra1.Numgrupo=cosa_grupo2;
-			obra2.Numgrupo=cosa_grupo3;
-			obra3.Numgrupo=cosa_grupo4;
 			
 			cosa_constructora.Agregar_Obra(obra1);
 			cosa_constructora.Agregar_Obra(obra2);
@@ -115,8 +111,9 @@ namespace TP_Final
         				int nroLegajo = int.Parse(Console.ReadLine());
         				Console.Write("Cargo: ");
         				string cargo = Console.ReadLine();
-        				
-        				cosa_constructora.Agregar_Obrero(nombre, apellido, cargo, dni, nroLegajo);
+        				Console.WriteLine("ingrese id de grupo");
+        				int id= int.Parse(Console.ReadLine());
+        				cosa_constructora.Agregar_Obrero(nombre, apellido, cargo, dni, nroLegajo,id);
         				Console.WriteLine("Obrero agregado exitosamente.");
 
 						break;
@@ -127,7 +124,7 @@ namespace TP_Final
 						Console.WriteLine("Ingrese el dni del usuario que quiera eliminar: ");
 						dni=int.Parse(Console.ReadLine());
             			Console.Clear();
-						//cosa_grupo.eliminar_Obrero(dni);
+						cosa_constructora.eliminar_obrero(dni);
 					 }
 					 else
 					 {
@@ -165,7 +162,10 @@ namespace TP_Final
 					string TEEjecucion=(Console.ReadLine());
 					Console.WriteLine("ingrese costo de la obra. ");
 					double costo=double.Parse(Console.ReadLine());
-					cosa_constructora.Agregar_Obra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,0);
+					Console.WriteLine("ingrese id grupo");
+					int grupid= int.Parse(Console.ReadLine());
+					int code=int.Parse(Console.ReadLine());
+					cosa_constructora.Agregar_Obra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,grupid,0,code);
 					
 					break;
                     case "f":
