@@ -31,6 +31,11 @@ namespace TP_Final
             lista_grupos = new List<Grupo_Obreros>();
 			obras=new List<Obra>();
             obrasFinalizadas= new List<Obra>();
+            // Crea los 8 grupos iniciales
+        for (int i = 1; i <= 8; i++)
+        {
+            lista_grupos.Add(new Grupo_Obreros(i));
+        }
             
 		}
 		public Constructora(){
@@ -64,8 +69,8 @@ namespace TP_Final
         	set{progreso=value;}get{return progreso;}
         }
         
-		public void Agregar_Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra,string TEEjecucion,double costo,int progreso){
-			Obra NuevaObra= new Obra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo,progreso);
+		public void Agregar_Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra,string TEEjecucion,double costo,int grupoID,int progreso, int codigoINT){
+			Obra NuevaObra= new Obra(nombreDeDuenio,dniDeDuenio,Tipodeobra,TEEjecucion,costo, grupoID, progreso,  codigoINT);
 			obras.Add(NuevaObra);
 			Console.WriteLine("agregado exitosamente, perfectirigillo");
 		}
@@ -73,12 +78,15 @@ namespace TP_Final
         	obras.Add(obra);
         	
         }
-        public void Agregar_Obrero(string nombre, string apellido,string cargo, int dni, int nroLegajo)
+        public void Agregar_Obrero(string nombre, string apellido,string cargo, int dni, int nroLegajo,int id)
     {
         if (grupo != null)
     {
-        grupo.AgregarObrero(nombre, apellido, cargo, dni, nroLegajo,grupo);
-        Console.WriteLine("Obrero agregado exitosamente.");
+        grupo.AgregarObrero(nombre, apellido, cargo, dni, nroLegajo,id);
+        // Agregar al obrero al grupo correspondiente
+        grupo = lista_grupos.Find(g => g.ID == obra.GrupID);
+        grupo.Lista_obreros.Add(new Obrero(nombre, apellido, cargo, dni, nroLegajo, id));
+
     }
     else
     {
@@ -122,32 +130,38 @@ namespace TP_Final
         
     
 	
-	   /* public void eliminar_Obrero(int dni)
+	   
+         public void eliminar_obrero(int dni)
+{
+    if (grupo != null)
+    {
+        Obrero Despedido = grupo.Lista_obreros.Find(o => o.DNI == dni);
+        if (Despedido != null)
         {
-                bool elimi = false;
-                foreach (Obrero o in lista_obreros)
-                {
-                	if (o.DNI ==dni)
-                    {
-                        elimi = true;
-						lista_obreros.Remove(o);
-                        Console.WriteLine("eliminado exitosamente.");
-                        break;
-                    }
-                	
-                    
-                }
-                if(!elimi){
-                Console.WriteLine("ese dni no existe en la base de datos,intente nuevamente.");
-                
-                }
-                
-		}
+            grupo.RemoverObrero(Despedido);
+            Console.WriteLine("Obrero eliminado exitosamente.");
+        }
+        else
+        {
+            Console.WriteLine("No se encontró un obrero con el DNI especificado en el grupo.");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Error: No se puede eliminar el obrero. No se ha asignado un grupo.");
+    }
+}
 		public void Mostrar_Obrero(){
-			Console.WriteLine("hay {0} obreros en la obra.",lista_obreros.Count);
-			foreach (Obrero obrero in lista_obreros){
+			Console.WriteLine("hay {0} obreros en la obra.",grupo.Lista_obreros.Count);
+			foreach (Obrero obrero in grupo.Lista_obreros){
 				Console.WriteLine(obrero);
 			}
         }
-    */}
+         public void Mostrar_Grupo(){
+			Console.WriteLine("hay {0} grupos en la obra.",lista_grupos.Count);
+			foreach (Grupo_Obreros grupo in lista_grupos){
+				Console.WriteLine(grupo);
+			}
+        }
+    }
 }
