@@ -1,3 +1,11 @@
+/*
+ * Creado por SharpDevelop.
+ * Usuario: iori_
+ * Fecha: 2/5/2023
+ * Hora: 20:00
+ * 
+ * Para cambiar esta plantilla use Herramientas | Opciones | Codificación | Editar Encabezados Estándar
+ */
 using System;
 using System.Collections;
 namespace TP_Final
@@ -5,32 +13,23 @@ namespace TP_Final
 	public class Obra
 	{
 		private string tipodeobra,TEstimado;
-		private int progreso,codigoObra;
+		private int progreso,codigoINT;
 		private double costo;
 		private string nombreDeDuenio;
 		private int dniDeDuenio;
-		private Grupo_Obreros numgrupo;
+		private int grupID;
 		
 		
-		public Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra, string TEstimado,double costo,Grupo_Obreros numgrupo,int progreso)
+		public Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra, string TEstimado,double costo,int grupID,int progreso,int codigoINT)
 		{
 			this.tipodeobra=Tipodeobra;
 			this.nombreDeDuenio=nombreDeDuenio;
 			this.dniDeDuenio=dniDeDuenio;
 			this.TEstimado=TEstimado;
 			this.costo=costo;
-			this.numgrupo=numgrupo;
+			this.grupID=grupID;
 			this.progreso=progreso;
-		}
-		public Obra(string nombreDeDuenio,int dniDeDuenio,string Tipodeobra, string TEstimado,double costo,int progreso)
-		{
-			this.tipodeobra=Tipodeobra;
-			this.nombreDeDuenio=nombreDeDuenio;
-			this.dniDeDuenio=dniDeDuenio;
-			this.TEstimado=TEstimado;
-			this.costo=costo;
-			this.progreso=progreso;
-			
+			this.codigoINT=codigoINT;
 		}
 		public Obra(){
 			
@@ -48,21 +47,22 @@ namespace TP_Final
 		public string Testimado{
 			set{TEstimado= value;} get{return TEstimado;}
 		}
-		public int CodigoObra{
-			set{codigoObra=value;} get{return codigoObra;}
+		public int CodigoINT{
+			set{codigoINT=value;} get{return codigoINT;}
 		}
-		public Grupo_Obreros Numgrupo{
-			set{numgrupo= value;} get{return numgrupo;}
-		}
+		
 		public int Progreso{
 			set{progreso=value;} get{return progreso;}
+		}
+		public int GrupID{
+			set{grupID=value;}get{return grupID;}
 		}
 		
 		
 			public override string ToString()
 		{
 				
-			return string.Format("Propietario:{0} -- Dni:{1} -- Tipo:{2} -- TiempoEstimado:{3} -- Costo:{4}usd -- Progreso:{5} -- N°Grupo:{6}",nombreDeDuenio,dniDeDuenio,tipodeobra,TEstimado,costo,progreso,numgrupo.Numero);
+			return string.Format("Propietario:{0} -- Dni:{1} -- Tipo:{2} -- TiempoEstimado:{3} -- Costo:{4}usd -- Progreso:{5} -- N°Grupo:{6}",nombreDeDuenio,dniDeDuenio,tipodeobra,TEstimado,costo,progreso,grupID);
 		}
 		
 	}
