@@ -1,111 +1,317 @@
-using System;
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        EmpresaConstructora empresaConstructora = new EmpresaConstructora();
+
+        bool salir = false;
+        while (!salir)
+        {
+            Console.WriteLine("----- Menú de Opciones -----");
+            Console.WriteLine("a) Contratar un obrero nuevo");
+            Console.WriteLine("b) Eliminar un obrero");
+            Console.WriteLine("c) Listado de obreros");
+            Console.WriteLine("d) Listado de obras en ejecución");
+            Console.WriteLine("e) Agregar una obra y asignarle un grupo de obreros");
+            Console.WriteLine("f) Modificar el estado de avance de una obra");
+            Console.WriteLine("g) Listado de obras finalizadas");
+            Console.WriteLine("h) Salir");
+            Console.WriteLine("----------------------------");
+
+            Console.Write("Seleccione una opción: ");
+            string opcion = Console.ReadLine().ToLower();
+
+            switch (opcion)
+            {
+                case "a":
+                    Console.Write("Ingrese el nombre del obrero: ");
+                    string nombre = Console.ReadLine();
+                    Console.Write("Ingrese el apellido del obrero: ");
+                    string apellido = Console.ReadLine();
+                    Console.Write("Ingrese el DNI del obrero: ");
+                    int dni = int.Parse(Console.ReadLine());
+                    Console.Write("Ingrese el legajo del obrero: ");
+                    int legajo = int.Parse(Console.ReadLine());
+                    Console.Write("Ingrese el cargo del obrero: ");
+                    string cargo = Console.ReadLine();
+                    Console.Write("Ingrese el grupo al que pertenece el obrero: ");
+                    int grupoId = int.Parse(Console.ReadLine());
+
+                    empresaConstructora.ContratarObrero(nombre, apellido, dni, legajo, cargo, grupoId);
+                    break;
+
+                case "b":
+                    Console.Write("Ingrese el DNI del obrero a eliminar: ");
+                    int dniEliminar = int.Parse(Console.ReadLine());
+
+                    empresaConstructora.EliminarObrero(dniEliminar);
+                    break;
+
+                case "c":
+                    empresaConstructora.ListarObreros();
+                    break;
+
+                case "d":
+                    empresaConstructora.ListarObras();
+                    break;
+
+                case "e":
+                    Console.Write("Ingrese el nombre del propietario de la obra: ");
+                    string nombrePropietario = Console.ReadLine();
+                    Console.Write("Ingrese el DNI del propietario de la obra: ");
+                    int dniPropietario = int.Parse(Console.ReadLine());
+                    Console.Write("Ingrese el tipo de la obra: ");
+                    string tipoObra = Console.ReadLine();
+                    Console.Write("Ingrese el tiempo estimado de ejecución (en días): ");
+                    int tiempoEstimado = int.Parse(Console.ReadLine());
+                    Console.Write("Ingrese el costo de la obra: ");
+                    decimal costoObra = decimal.Parse(Console.ReadLine());
+
+                    try
+                    {
+                        empresaConstructora.AgregarObra(nombrePropietario, dniPropietario, tipoObra, tiempoEstimado, costoObra);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
+                    }
+                    break;
+
+                case "f":
+                    Console.Write("Ingrese el código interno de la obra: ");
+                    int codigoInterno = int.Parse(Console.ReadLine());
+                    Console.Write("Ingrese el estado de avance de la obra (en porcentaje): ");
+                    int estadoAvance = int.Parse(Console.ReadLine());
+
+                    empresaConstructora.ModificarEstadoAvance(codigoInterno, estadoAvance);
+                    break;
+
+                case "g":
+                    empresaConstructora.ListarObrasFinalizadas();
+                    break;
+
+                case "h":
+                    salir = true;
+                    break;
+
+                default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+                    break;
+            }
+
+            Console.WriteLine();
+        }
+    }
+}
 
 public class Obrero
 {
     public string Nombre { get; set; }
     public string Apellido { get; set; }
-    public string Dni { get; set; }
-    public int NroLegajo { get; set; }
+    public int Dni { get; set; }
+    public int Legajo { get; set; }
     public string Cargo { get; set; }
+    public int GrupoId { get; set; }
 
-    public Obrero(string nombre, string apellido, string dni, int nroLegajo, string cargo)
+    public Obrero(string nombre, string apellido, int dni, int legajo, string cargo, int grupoId)
     {
         Nombre = nombre;
         Apellido = apellido;
         Dni = dni;
-        NroLegajo = nroLegajo;
+        Legajo = legajo;
         Cargo = cargo;
+        GrupoId = grupoId;
     }
 }
 
-public class Empresa
+public class Grupo
 {
-    public List<Obrero> Obreros { get; set; }
+    public int Id { get; set; }
+    public List<Obrero> Integrantes { get; set; }
+    public int CodigoObra { get; set; }
 
-    public Empresa()
+    public Grupo(int id)
     {
-        Obreros = new List<Obrero>();
-    }
-
-    public void AgregarObrero(string nombre, string apellido, string dni, int nroLegajo, string cargo)
-    {
-        Obrero nuevoObrero = new Obrero(nombre, apellido, dni, nroLegajo, cargo);
-        Obreros.Add(nuevoObrero);
-        Console.WriteLine("Obrero agregado exitosamente.");
+        Id = id;
+        Integrantes = new List<Obrero>();
+        CodigoObra = 0;
     }
 }
 
 public class Obra
 {
     public string NombrePropietario { get; set; }
-    public string DniPropietario { get; set; }
+    public int DniPropietario { get; set; }
     public int CodigoInterno { get; set; }
-    public string TipoObra { get; set; }
+    public string Tipo { get; set; }
     public int TiempoEstimado { get; set; }
     public int EstadoAvance { get; set; }
-    public int NumeroGrupo { get; set; }
-    public double Costo { get; set; }
+    public int GrupoId { get; set; }
+    public decimal Costo { get; set; }
 
-    public Obra(string nombrePropietario, string dniPropietario, int codigoInterno, string tipoObra,
-        int tiempoEstimado, int estadoAvance, int numeroGrupo, double costo)
+    public Obra(string nombrePropietario, int dniPropietario, int codigoInterno, string tipo, int tiempoEstimado, int estadoAvance, int grupoId, decimal costo)
     {
         NombrePropietario = nombrePropietario;
         DniPropietario = dniPropietario;
         CodigoInterno = codigoInterno;
-        TipoObra = tipoObra;
+        Tipo = tipo;
         TiempoEstimado = tiempoEstimado;
         EstadoAvance = estadoAvance;
-        NumeroGrupo = numeroGrupo;
+        GrupoId = grupoId;
         Costo = costo;
     }
 }
 
-public class Empresa
+public class EmpresaConstructora
 {
-    public List<Obra> Obras { get; set; }
+    private List<Obrero> obreros;
+    private List<Grupo> grupos;
+    private List<Obra> obrasEnEjecucion;
+    private List<Obra> obrasFinalizadas;
 
-    public Empresa()
+    public EmpresaConstructora()
     {
-        Obras = new List<Obra>();
+        obreros = new List<Obrero>();
+        grupos = new List<Grupo>();
+        obrasEnEjecucion = new List<Obra>();
+        obrasFinalizadas = new List<Obra>();
+
+        // Crear los 8 grupos iniciales
+        for (int i = 1; i <= 8; i++)
+        {
+            grupos.Add(new Grupo(i));
+        }
     }
 
-    public void AgregarObra(string nombrePropietario, string dniPropietario, int codigoInterno, string tipoObra,
-        int tiempoEstimado, int estadoAvance, int numeroGrupo, double costo)
+    public void ContratarObrero(string nombre, string apellido, int dni, int legajo, string cargo, int grupoId)
     {
-        Obra nuevaObra = new Obra(nombrePropietario, dniPropietario, codigoInterno, tipoObra,
-            tiempoEstimado, estadoAvance, numeroGrupo, costo);
-        Obras.Add(nuevaObra);
+        Obrero obrero = new Obrero(nombre, apellido, dni, legajo, cargo, grupoId);
+        obreros.Add(obrero);
+
+        // Agregar al obrero al grupo correspondiente
+        Grupo grupo = grupos.Find(g => g.Id == grupoId);
+        grupo.Integrantes.Add(obrero);
+
+        Console.WriteLine("Obrero contratado exitosamente.");
+    }
+
+    public void EliminarObrero(int dni)
+    {
+        Obrero obrero = obreros.Find(o => o.Dni == dni);
+        if (obrero != null)
+        {
+            obreros.Remove(obrero);
+
+            // Remover al obrero del grupo correspondiente
+            Grupo grupo = grupos.Find(g => g.Id == obrero.GrupoId);
+            grupo.Integrantes.Remove(obrero);
+
+            Console.WriteLine("Obrero eliminado exitosamente.");
+        }
+        else
+        {
+            Console.WriteLine("No se encontró un obrero con el DNI especificado.");
+        }
+    }
+
+    public void ListarObreros()
+    {
+        Console.WriteLine("Listado de Obreros:");
+        foreach (Obrero obrero in obreros)
+        {
+            Console.WriteLine("Nombre: " + obrero.Nombre + " " + obrero.Apellido);
+            Console.WriteLine("DNI: " + obrero.Dni);
+            Console.WriteLine("Legajo: " + obrero.Legajo);
+            Console.WriteLine("Cargo: " + obrero.Cargo);
+            Console.WriteLine("Grupo: " + obrero.GrupoId);
+            Console.WriteLine("-------------------------------------");
+        }
+    }
+
+    public void ListarObras()
+    {
+        Console.WriteLine("Listado de Obras en Ejecución:");
+        foreach (Obra obra in obrasEnEjecucion)
+        {
+            Console.WriteLine("Nombre Propietario: " + obra.NombrePropietario);
+            Console.WriteLine("DNI Propietario: " + obra.DniPropietario);
+            Console.WriteLine("Código Interno: " + obra.CodigoInterno);
+            Console.WriteLine("Tipo: " + obra.Tipo);
+            Console.WriteLine("Tiempo Estimado: " + obra.TiempoEstimado + " días");
+            Console.WriteLine("Estado de Avance: " + obra.EstadoAvance + "%");
+            Console.WriteLine("Grupo Asignado: " + obra.GrupoId);
+            Console.WriteLine("Costo: $" + obra.Costo);
+            Console.WriteLine("-------------------------------------");
+        }
+    }
+
+    public void AgregarObra(string nombrePropietario, int dniPropietario, string tipo, int tiempoEstimado, decimal costo)
+    {
+        // Verificar si hay un grupo disponible
+        Grupo grupoDisponible = grupos.Find(g => g.CodigoObra == 0);
+        if (grupoDisponible == null)
+        {
+            throw new Exception("No hay grupos de obreros disponibles para asignar a la obra.");
+        }
+
+        // Generar el código interno de la obra
+        int codigoInterno = obrasEnEjecucion.Count + 1;
+
+        // Crear la obra y asignarle el grupo disponible
+        Obra obra = new Obra(nombrePropietario, dniPropietario, codigoInterno, tipo, tiempoEstimado, 0, grupoDisponible.Id, costo);
+        obrasEnEjecucion.Add(obra);
+
+        // Actualizar el código de obra asignado en el grupo
+        grupoDisponible.CodigoObra = codigoInterno;
+
         Console.WriteLine("Obra agregada exitosamente.");
     }
-}
 
-public class Program
-{
-    public static void Main(string[] args)
+    public void ModificarEstadoAvance(int codigoInterno, int estadoAvance)
     {
-        Empresa empresa = new Empresa();
+        Obra obra = obrasEnEjecucion.Find(o => o.CodigoInterno == codigoInterno);
+        if (obra != null)
+        {
+            obra.EstadoAvance = estadoAvance;
 
-        Console.WriteLine("Agregar una nueva obra:");
-        Console.Write("Nombre del propietario: ");
-        string nombrePropietario = Console.ReadLine();
-        Console.Write("DNI del propietario: ");
-        string dniPropietario = Console.ReadLine();
-        Console.Write("Código interno: ");
-        int codigoInterno = int.Parse(Console.ReadLine());
-        Console.Write("Tipo de obra: ");
-        string tipoObra = Console.ReadLine();
-        Console.Write("Tiempo estimado (en días): ");
-        int tiempoEstimado = int.Parse(Console.ReadLine());
-        Console.Write("Estado de avance (%): ");
-        int estadoAvance = int.Parse(Console.ReadLine());
-        Console.Write("Número de grupo: ");
-        int numeroGrupo = int.Parse(Console.ReadLine());
-        Console.Write("Costo: ");
-        double costo = double.Parse(Console.ReadLine());
+            if (estadoAvance == 100)
+            {
+                obrasEnEjecucion.Remove(obra);
+                obrasFinalizadas.Add(obra);
 
-        empresa.AgregarObra(nombrePropietario, dniPropietario, codigoInterno, tipoObra,
-            tiempoEstimado, estadoAvance, numeroGrupo, costo);
+                // Liberar el grupo asignado a la obra finalizada
+                Grupo grupoAsignado = grupos.Find(g => g.Id == obra.GrupoId);
+                grupoAsignado.CodigoObra = 0;
 
-        // Resto de la lógica de la aplicación
+                Console.WriteLine("La obra se ha dado por finalizada.");
+            }
+            else
+            {
+                Console.WriteLine("Estado de avance de la obra modificado exitosamente.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No se encontró una obra con el código interno especificado.");
+        }
+    }
+
+    public void ListarObrasFinalizadas()
+    {
+        Console.WriteLine("Listado de Obras Finalizadas:");
+        foreach (Obra obra in obrasFinalizadas)
+        {
+            Console.WriteLine("Nombre Propietario: " + obra.NombrePropietario);
+            Console.WriteLine("DNI Propietario: " + obra.DniPropietario);
+            Console.WriteLine("Código Interno: " + obra.CodigoInterno);
+            Console.WriteLine("Tipo: " + obra.Tipo);
+            Console.WriteLine("Tiempo Estimado: " + obra.TiempoEstimado + " días");
+            Console.WriteLine("Estado de Avance: " + obra.EstadoAvance + "%");
+            Console.WriteLine("Grupo Asignado: " + obra.GrupoId);
+            Console.WriteLine("Costo: $" + obra.Costo);
+            Console.WriteLine("-------------------------------------");
+        }
     }
 }
+}
+
