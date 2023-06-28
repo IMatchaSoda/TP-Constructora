@@ -7,15 +7,16 @@ namespace TP_Final
 	public class Obrero
 	{
 		private string nombre,apellido,cargo;
-		private int dni,legajo;
+		private int dni,legajo,grupoid;
 		private Grupo_Obreros grupo;
-		public Obrero(string nombre,string apellido,string cargo,int dni,int legajo)
+		public Obrero(string nombre,string apellido,string cargo,int dni,int legajo,int grupoid)
 		{
 			this.nombre=nombre;
             this.apellido=apellido;
 			this.cargo=cargo;
 			this.dni=dni;
 			this.legajo=legajo;
+			this.grupoid=grupoid;
 			
 		}
 		public Obrero(string nombre,string apellido,string cargo,int dni,int legajo,Grupo_Obreros grupo)
@@ -54,9 +55,12 @@ namespace TP_Final
             set{legajo=value;}
             get{return legajo;}
         }
+		public int Grupoid{
+			set{grupoid=value;}get{return grupoid;}
+		}
 		public override string ToString()
 		{
-			return string.Format("nombre y apellido:{0},{1} dni:{2}	-- legajo: {3} -- cargo: {4} -- N°Grupo: {5}",nombre, apellido, dni,legajo,cargo,grupo.Numero);
+			return string.Format("nombre y apellido:{0},{1} dni:{2}	-- legajo: {3} -- cargo: {4} -- N°Grupo: {5}",nombre, apellido, dni,legajo,cargo,grupoid);
 		}
 
 	}
