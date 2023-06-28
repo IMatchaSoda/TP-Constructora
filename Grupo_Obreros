@@ -7,14 +7,13 @@ namespace TP_Final
 	public class Grupo_Obreros
 	{
 		
-		private Obra codigoObra;
 		private Obrero obrero;
 		private List<Obrero> lista_obreros;
-		private int NumGrupo;
-		public Grupo_Obreros(Obra Codigo,int Numero)
+		private int id,codobra;
+		public Grupo_Obreros(int codobra,int id)
 		{
-			Numero= NumGrupo;
-			Codigo= codigoObra;
+			this.id= id;
+			codobra= 0;
 			 lista_obreros= new List<Obrero>();
 		}
 		public Grupo_Obreros(){
@@ -24,22 +23,22 @@ namespace TP_Final
 			this.obrero=obrero;
 		}
 		
-		public Grupo_Obreros(int NumGrupo){
-			this.NumGrupo=NumGrupo;
+		public Grupo_Obreros(int id){
+			this.id=id;
 			 lista_obreros= new List<Obrero>();
 		}
 		
 		
-		public void AgregarObrero(string nombre, string apellido,string cargo, int dni, int nroLegajo,Grupo_Obreros grupo)
+		public void AgregarObrero(string nombre, string apellido,string cargo, int dni, int nroLegajo,int grupoid)
     {
-        Obrero nuevoObrero = new Obrero(nombre, apellido,cargo, dni, nroLegajo, grupo);
+        Obrero nuevoObrero = new Obrero(nombre, apellido,cargo, dni, nroLegajo, grupoid);
         lista_obreros.Add(nuevoObrero);
         
     }
     
-        public Obra Codigo{
-            set{codigoObra= value;}
-            get{return codigoObra;}
+        public int Codigo{
+            set{codobra= value;}
+            get{return codobra;}
         }
 		public List<Obrero> Lista_obreros{
 			get{return lista_obreros;}
@@ -47,8 +46,8 @@ namespace TP_Final
 		public Obrero Obrero{
         	set{obrero=value;}get{return obrero;}
         }
-		public int Numero{
-			set{NumGrupo= value;}get{return NumGrupo;}
+		public int ID{
+			set{id= value;}get{return id;}
 		}
 		public void Mostrar_Obrero(){
 			if(lista_obreros.Count>=1){
@@ -73,6 +72,10 @@ namespace TP_Final
     	
 			
 		}
+		public void RemoverObrero(Obrero obrero)
+{
+    lista_obreros.Remove(obrero);
+}
 
 	}
 }
